@@ -15,9 +15,9 @@ y <- dbGetQuery(con, statement = paste("SELECT y_Achse","FROM punkte"))
 table1 <- dbGetQuery(con, statement = paste("SELECT *","FROM punkte"))
 df <- data.frame(x,y)
 dbDisconnect(con)
-# Define server logic required to draw a histogram
+
+# Define server logic required to draw a line
 shinyServer(function(input, output) {
   output$plot2<-renderPlot({ggplot(df,aes(x=x,y=y))+geom_line(colour='blue')},height = 400,width = 600)
   output$t<-renderTable(table1)
- 
 })
